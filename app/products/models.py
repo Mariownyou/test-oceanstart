@@ -9,7 +9,6 @@ class Product(models.Model):
         Category,
         related_name='products'
     )
-    category = models.CharField(max_length=100)
     price_min = models.PositiveIntegerField()
     price_max = models.PositiveIntegerField()
     is_published = models.BooleanField(default=False)
