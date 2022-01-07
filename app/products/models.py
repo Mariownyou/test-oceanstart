@@ -1,14 +1,15 @@
 from django.db import models
 
+from categories.models import Category
+
 
 class Product(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=100)
     categories = models.ManyToManyField(
-        'Category',
-        on_delete=models.PROTECT,
+        Category,
         related_name='products'
     )
-    category = models.CharField()
+    category = models.CharField(max_length=100)
     price_min = models.PositiveIntegerField()
     price_max = models.PositiveIntegerField()
     is_published = models.BooleanField(default=False)
