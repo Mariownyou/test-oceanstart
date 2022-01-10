@@ -24,3 +24,30 @@
 
 ### Тесты
 По желанию протестировать ключевой функционал API
+
+## Запуск
+```bash
+poetry install or pip install -r requirements.txt
+```
+
+```bash
+poetry shell
+python manage.py migrate
+python manage.py runserver or test
+```
+
+**Endpoints**  
+`/products` -- GET, POST, PUT, PATCH, DELETE  
+`/categories` -- GET, POST, PUT, PATCH, DELETE
+
+
+**Filters**  
+`products?name=` -- by name  
+`products?is_published=` -- False / True  
+`products?is_removed=` -- False / True  
+`products?price=` -- by price  
+`products?price_gt=100&price_lt=1000` -- price range  
+`products?categories__name=` -- category name  
+`products?categories__id=` -- category id  
+
+
