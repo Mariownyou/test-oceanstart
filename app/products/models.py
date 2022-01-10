@@ -9,8 +9,7 @@ class Product(models.Model):
         Category,
         related_name='products'
     )
-    price_min = models.PositiveIntegerField()
-    price_max = models.PositiveIntegerField()
+    price = models.PositiveIntegerField()
     is_published = models.BooleanField(default=False)
     is_removed = models.BooleanField(default=False)
 
