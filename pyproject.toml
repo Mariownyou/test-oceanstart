@@ -8,10 +8,10 @@ authors = ["Leva <smj510black@gmail.com>"]
 python = "^3.8"
 Django = "^4.0.1"
 djangorestframework = "^3.13.1"
-neovim = "^0.3.1"
 django-filter = "^21.1"
 
 [tool.poetry.dev-dependencies]
+neovim = "^0.3.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
