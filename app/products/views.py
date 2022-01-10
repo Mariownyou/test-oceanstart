@@ -1,33 +1,8 @@
 import django_filters
-from rest_framework import viewsets, serializers
-from rest_framework.exceptions import ValidationError
+from rest_framework import viewsets
 
 from products.models import Product
-
-
-class ProductCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = ('id', 'name', 'price', 'is_removed', 'categories')
-        read_only_fields = ('is_published',)
-
-    def validate_categories(self, value):
-        categories_count = len(value)
-        self.is_published = True
-
-        if categories_count > 10:
-            raise ValidationError("You can't assign more than ten categories")
-        if categories_count < 2:
-            self.is_published = False
-        return value
-
-
-class ProductListSerializer(ProductCreateSerializer):
-    categories = serializers.SlugRelatedField(many=True, slug_field='name', read_only=True)
-
-    class Meta:
-        model = Product
-        fields = ('id', 'name', 'price', 'is_removed', 'is_published', 'categories')
+from products.serializers import ProductCreateSerializer, ProductListSerializer
 
 
 class ProductFilter(django_filters.FilterSet):

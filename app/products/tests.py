@@ -5,7 +5,7 @@ from products.models import Product
 from categories.models import Category
 
 
-class ProductBaseTestCase(TestCase):
+class BaseTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.category_1 = Category.objects.create(name='category 1')
@@ -31,11 +31,7 @@ class ProductBaseTestCase(TestCase):
         self.client = Client()
 
 
-class ProductModelTestCase(ProductBaseTestCase):
-    pass
-
-
-class ProductViewsTestCase(ProductBaseTestCase):
+class ProductViewsTestCase(BaseTestCase):
     def test_delete(self):
         self.assertEqual(Product.objects.count(), 10)
         response = self.client.delete(reverse('product-detail', args=[self.product.id]))
@@ -44,7 +40,8 @@ class ProductViewsTestCase(ProductBaseTestCase):
         self.product.refresh_from_db()
         self.assertEqual(self.product.is_removed, True)
 
-class ProductFilterTestCase(ProductBaseTestCase):
+
+class ProductFilterTestCase(BaseTestCase):
     def test_name_filter(self):
         response = self.client.get(reverse('product-list'), {'name': 'test product 1'})
         self.assertEqual(response.status_code, 200)
